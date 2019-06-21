@@ -1,0 +1,1 @@
+C:\Python37\Scripts\pyuic5 H:\EQ\EQ_gui\mw.ui -o  H:\EQ\EQ_gui\mw.py
