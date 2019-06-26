@@ -27,6 +27,9 @@ class MW(QtWidgets.QMainWindow, Ui_MainWindow):
         # DBG
         self.ser.connect('COM10')
 
+    def showMsg(self, text):
+        QtWidgets.QMessageBox.information(self, 'Сообщение', text)
+
     def showErr(self, text):
         QtWidgets.QMessageBox.critical(self, 'Ошибка!', text)
 
@@ -44,6 +47,10 @@ class MW(QtWidgets.QMainWindow, Ui_MainWindow):
         self.clearAllPushButton.clicked.connect(self.clearAllPushButtonClicked)
         self.writeGenPushButton.clicked.connect(self.writeGenPushButtonClicked)
         self.readGenPushButton.clicked.connect(self.readGenPushButtonClicked)
+        self.selectFileReadPushButton.clicked.connect(self.selectFileReadPushButtonClicked)
+        self.selectFileSavePushButton.clicked.connect(self.selectFileSavePushButtonClicked)
+        self.readFilePushButton.clicked.connect(self.readFilePushButtonClicked)
+        self.saveFilePushButton.clicked.connect(self.saveFilePushButtonClicked)
 
     def writeLog(self, msg):
         old_text = self.logTextEdit.toPlainText()
@@ -55,11 +62,207 @@ class MW(QtWidgets.QMainWindow, Ui_MainWindow):
 
     # ---
 
+
+    def readFilePushButtonClicked(self):
+        file = self.readFileLineEdit.text()
+
+        if file == '':
+            file = 'equalizerConfig.conf'
+        else:
+            file = file + '\equalizerConfig.conf'
+
+
+        try:
+            f = open(file, 'r')
+
+
+            for line in f:
+                line = line.split(' ')
+                reg, val = int(line[0], 16), int(line[1], 16)
+                self.ser.stmWriteReg(reg, val)
+
+            f.close()
+
+        except:
+            self.showErr('Ошибка во время чтения или записи из файла!')
+            return
+
+        self.readDataPushButtonClicked()
+        self.readGenPushButtonClicked()
+
+        self.showMsg('Готово!')
+
+
+    def saveFilePushButtonClicked(self):
+        file = self.saveFileLineEdit.text()
+
+        if file == '':
+            file = 'equalizerConfig.conf'
+
+
+        f = open(file, 'w')
+
+        # -- сохраняем для регистров
+        reg_n = 5
+
+        table = \
+        [
+            int('0x0E', 16), int('0x15', 16), int('0x1C', 16), int('0x23', 16), \
+            int('0x2B', 16), int('0x32', 16), int('0x39', 16), int('0x40', 16), \
+        ]
+
+
+        for i in range(len(table)):
+            for j in range(reg_n):
+                reg = table[i] + j
+                val = self.ser.stmReadReg(reg)
+                f.write(hex(reg) + ' ' + val + '\n')
+
+        table = [0x01, 0x02, 0x08]
+        for i in range(len(table)):
+            val = self.ser.stmReadReg(table[i])
+            f.write(hex(table[i]) + ' ' + val + '\n')
+
+        f.close()
+
+        self.writeLog('Saved!')
+        self.showMsg('Готово!')
+
+    def selectFileReadPushButtonClicked(self):
+        self.readFileLineEdit.setText(QFileDialog.getExistingDirectory())
+
+    def selectFileSavePushButtonClicked(self):
+        self.saveFileLineEdit.setText(QFileDialog.getOpenFileName()[0])
+
+    # ---
+
     def readGenPushButtonClicked(self):
-        pass
+        reg = []
+
+        # ...
+
+        reg_addr = [0x00, 0x01, 0x02, 0x08, 0x0A]
+
+
+        for t in reg_addr:
+            tmp = self.ser.stmReadReg(t)
+            tmp = int(tmp, 16)
+            reg.append(tmp)
+
+        # Device Address Observation
+        _reg = reg[0]
+        if _reg & (1 << 2):
+            self.READDONE_comboBox.setCurrentIndex(0)
+        else:
+            self.READDONE_comboBox.setCurrentIndex(1)
+        _reg = _reg >> 3
+        _reg = _reg & 0x7
+        self.ADDR_lineEdit.setText(str(_reg))
+
+
+        # PWDN CHx
+        _reg = reg[1]
+        arr = [self.PWDN0checkBox,  self.PWDN1checkBox, self.PWDN2checkBox, self.PWDN3checkBox, self.PWDN4checkBox, self.PWDN5checkBox, self.PWDN6checkBox, self.PWDN7checkBox]
+        if reg == 0x00:
+            for t in arr:
+                t.setChecked(False)
+        elif reg == 0xFF:
+            for t in arr:
+                t.setChecked(True)
+        else:
+            sch = 0
+            for t in arr:
+                arr[sch].setChecked(bool(_reg & (1 << sch)))
+                sch = sch + 1
+
+
+        # Override PRSNT, LPBK Control
+        _reg = reg[2]
+
+        if _reg & (1 << 7):
+            self.OVERRXDET_comboBox.setCurrentIndex(0)
+        else:
+            self.OVERRXDET_comboBox.setCurrentIndex(1)
+
+        if _reg & (1 << 6):
+            self.RXDET_comboBox.setCurrentIndex(0)
+        else:
+            self.RXDET_comboBox.setCurrentIndex(1)
+        tmp = _reg & 0x30
+        tmp = tmp >> 4
+        self.LPBK_comboBox.setCurrentIndex(tmp)
+        if _reg & 1:
+            self.OPRSNT_comboBox.setCurrentIndex(0)
+        else:
+            self.OPRSNT_comboBox.setCurrentIndex(1)
+
+        # Override Pin Control
+        _reg = reg[3]
+        if _reg & (1 << 6):
+            self.OSDTHcomboBox.setCurrentIndex(0)
+        else:
+            self.OSDTHcomboBox.setCurrentIndex(1)
+        if _reg & (1 << 4):
+            self.OIDLEcomboBox.setCurrentIndex(0)
+        else:
+            self.OIDLEcomboBox.setCurrentIndex(1)
+        if _reg & (1 << 3):
+            self.ORXDETcomboBox.setCurrentIndex(0)
+        else:
+            self.ORXDETcomboBox.setCurrentIndex(1)
+        if _reg & (1 << 2):
+            self.ORATEcomboBox.setCurrentIndex(0)
+        else:
+            self.ORATEcomboBox.setCurrentIndex(1)
+
+        # Signal Detect Monitor
+        _reg = reg[4]
+        arr = [self.SDTH0checkBox, self.SDTH1checkBox, self.SDTH2checkBox, self.SDTH3checkBox, \
+               self.SDTH4checkBox, self.SDTH5checkBox, self.SDTH6checkBox, self.SDTH7checkBox ]
+
+        for i in range(len(arr)):
+            arr[i].setChecked(_reg & (1 << i))
 
     def writeGenPushButtonClicked(self):
-        pass
+
+        addr = [0x01, 0x02, 0x08]
+        vals = []
+
+        # PWDN CHx
+        arr = [self.PWDN0checkBox, self.PWDN1checkBox, self.PWDN2checkBox, self.PWDN3checkBox, self.PWDN4checkBox,
+               self.PWDN5checkBox, self.PWDN6checkBox, self.PWDN7checkBox]
+        tmp = 0x0
+        for i in range(len(arr)):
+            if arr[i].isChecked():
+                tmp |= (1 << i)
+        vals.append(tmp)
+
+        # Override PRSNT, LPBK Control
+        tmp = 0x0
+        if self.OVERRXDET_comboBox.currentIndex() == 0:
+            tmp |= (1 << 7)
+        if  self.RXDET_comboBox.currentIndex() == 0:
+            tmp |= (1 << 6)
+        tmp |= self.LPBK_comboBox.currentIndex() << 4
+        if self.OPRSNT_comboBox.currentIndex() == 0:
+            tmp |= 1
+        vals.append(tmp)
+
+        # Override Pin Control
+        tmp = 0x0
+        if self.OSDTHcomboBox.currentIndex() == 0:
+            tmp |= 1 << 6
+        if self.OIDLEcomboBox.currentIndex() == 0:
+            tmp |= 1 << 4
+        if self.ORXDETcomboBox.currentIndex() == 0:
+            tmp |= 1 << 3
+        if self.ORATEcomboBox.currentIndex() == 0:
+            tmp |= 1 << 2
+        vals.append(tmp)
+        # ---
+
+        for i in range(len(addr)):
+            self.ser.stmWriteReg(addr[i], vals[i])
 
     def clearAllPushButtonClicked(self):
         val = 1 << 6
