@@ -40,7 +40,7 @@ void main(void)
   initCDC();
   initMainI2C();
  
-
+  //I2C_search(MAIN_I2C);
   
   
     

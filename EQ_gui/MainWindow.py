@@ -6,7 +6,7 @@ from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QSystemTrayIcon
-
+from datetime import datetime
 import re
 import serial.tools.list_ports
 
@@ -24,8 +24,14 @@ class MW(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ser = serStm()
         self.ser.log_signal.connect(self.writeLog)
 
+        self.tabWidget.setCurrentIndex(0)
+        self.toolBox.setCurrentIndex(0)
+        self.toolBox_2.setCurrentIndex(0)
+
+        self.refrPortPushButtonClicked()
+
         # DBG
-        self.ser.connect('COM10')
+        #self.ser.connect('COM10')
 
     def showMsg(self, text):
         QtWidgets.QMessageBox.information(self, 'Сообщение', text)
@@ -51,9 +57,12 @@ class MW(QtWidgets.QMainWindow, Ui_MainWindow):
         self.selectFileSavePushButton.clicked.connect(self.selectFileSavePushButtonClicked)
         self.readFilePushButton.clicked.connect(self.readFilePushButtonClicked)
         self.saveFilePushButton.clicked.connect(self.saveFilePushButtonClicked)
+        self.readDataComboBox.currentIndexChanged.connect(self.readDataPushButtonClicked)
 
     def writeLog(self, msg):
         old_text = self.logTextEdit.toPlainText()
+
+        msg = datetime.now().strftime('%H:%M:%S') + ' :: ' + msg
 
         if old_text == '':
             self.logTextEdit.setText(msg)
@@ -221,7 +230,11 @@ class MW(QtWidgets.QMainWindow, Ui_MainWindow):
                self.SDTH4checkBox, self.SDTH5checkBox, self.SDTH6checkBox, self.SDTH7checkBox ]
 
         for i in range(len(arr)):
-            arr[i].setChecked(_reg & (1 << i))
+            if _reg & (1 << i):
+                arr[i].setChecked(True)
+            else:
+                arr[i].setChecked(False)
+            #arr[i].setChecked(bool(_reg & (1 << i)))
 
     def writeGenPushButtonClicked(self):
 
@@ -272,7 +285,7 @@ class MW(QtWidgets.QMainWindow, Ui_MainWindow):
 
         reg = []
 
-        n = int(self.readDataComboBox.currentText())
+        n = int(self.readDataComboBox.currentText().replace('CH', ''))
 
         table = {
             0: int('0x0E', 16), 1: int('0x15', 16), 2: int('0x1C', 16), 3: int('0x23', 16), \
@@ -456,7 +469,20 @@ class MW(QtWidgets.QMainWindow, Ui_MainWindow):
 
         res = 0
 
-        res = table[self.EQControlcomboBox.currentText()]
+
+        text = self.EQControlcomboBox.currentText()
+        text = text.split('|')
+        _text = ''
+        for i in range(len(text) - 1):
+            if i != len(text) - 2:
+                _text = _text + text[i] + '|'
+            else:
+                _text = _text + text[i]
+
+        _text = _text[0:len(_text) - 1]
+
+
+        res = table[_text]
 
         return res
 
@@ -577,10 +603,16 @@ class MW(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def closePortPushButtonClicked(self):
         self.ser.disconnect()
+        self.openPortPushButton.setEnabled(True)
+        self.closePortPushButton.setEnabled(False)
 
     def openPortPushButtonClicked(self):
         port = self.portComboBox.currentText()
         self.ser.connect(port)
+        self.readGenPushButtonClicked()
+        self.readDataPushButtonClicked()
+        self.openPortPushButton.setEnabled(False)
+        self.closePortPushButton.setEnabled(True)
 
     def clearLogPushButtonClicked(self):
         self.logTextEdit.setText('')

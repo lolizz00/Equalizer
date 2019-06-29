@@ -83,13 +83,15 @@ class serStm(PyQt5.QtCore.QObject):
         ret = self._ask('read ' + reg)
 
 
-        if ret.find('ERR') != -1:
+        if ret.find('ERR') != -1 or ret == '':
             ret = 'ERROR'
             self.log('Read error!')
         else:
-            self.log('Read succ.')
+
             ret = ret.split(' ')
             ret = ret[2]
+            self.log('Read ' + ret + ' from 0x' + reg)
+            #self.log('Read succ.')
 
         return ret
 
@@ -109,4 +111,5 @@ class serStm(PyQt5.QtCore.QObject):
         if msg.find('ERR') != -1:
             self.log('STM : Error during writing!')
         else:
-            self.log('STM : Writing successful')
+            self.log('Write 0x' + val + ' to 0x' + reg)
+            #self.log('STM : Writing successful')

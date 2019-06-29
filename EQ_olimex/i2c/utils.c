@@ -69,9 +69,9 @@ uint8_t askEQ(uint8_t reg, int* stat)
 
 void printf_log(char * str)
 {
-#ifndef NDEBUG
+
   //printf("LOG : %s", str);
-#endif
+
 }
 
   
