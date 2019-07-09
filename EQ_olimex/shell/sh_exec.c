@@ -65,10 +65,48 @@ const SHELLCMD g_shell_cmd_arr[] =
     sh_exec_cmd_reset,
     sh_print_cmd_generic, 
     CMD_USER
+  },
+  {
+    "addr",
+    "",
+    "",
+    sh_exec_cmd_addr,
+    sh_print_cmd_generic, 
+    CMD_USER
+  },
+   {
+    "find",
+    "",
+    "",
+    sh_exec_cmd_find,
+    sh_print_cmd_generic, 
+    CMD_USER
   }
+    
 };
 
 // ---
+
+
+int sh_exec_cmd_addr(SHELLINFO * sh_info, SHELLCMD *cmd)
+{
+  char buff[100] = {0};
+  unsigned addr = strtol(sh_info->argv[1], NULL, 16);
+  
+  EQ_ADDR = addr;
+  
+  
+  return 0;
+}
+
+
+int sh_exec_cmd_find(SHELLINFO * sh_info, SHELLCMD *cmd)
+{
+  I2C_search(MAIN_I2C, sh_info);
+  
+  
+  return 0;
+}
 
 int sh_exec_cmd_reset(SHELLINFO * sh_info, SHELLCMD *cmd)
 {

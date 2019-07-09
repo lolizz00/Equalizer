@@ -66,12 +66,16 @@ uint8_t askEQ(uint8_t reg, int* stat)
   return rd_buff[0];
 }
 
+//#define LOG_JTAG
+
+
 
 void printf_log(char * str)
 {
 
-  //printf("LOG : %s", str);
-
+#ifdef LOG_JTAG
+  printf("LOG : %s", str);
+#endif
 }
 
   

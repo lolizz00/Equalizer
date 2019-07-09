@@ -58,6 +58,7 @@ class MW(QtWidgets.QMainWindow, Ui_MainWindow):
         self.readFilePushButton.clicked.connect(self.readFilePushButtonClicked)
         self.saveFilePushButton.clicked.connect(self.saveFilePushButtonClicked)
         self.readDataComboBox.currentIndexChanged.connect(self.readDataPushButtonClicked)
+        self.findPushButton.clicked.connect(self.findPushButtonClicked)
 
     def writeLog(self, msg):
         old_text = self.logTextEdit.toPlainText()
@@ -71,6 +72,9 @@ class MW(QtWidgets.QMainWindow, Ui_MainWindow):
 
     # ---
 
+    def findPushButtonClicked(self):
+        self.clearLogPushButtonClicked()
+        self.ser.find()
 
     def readFilePushButtonClicked(self):
         file = self.readFileLineEdit.text()
@@ -608,9 +612,15 @@ class MW(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def openPortPushButtonClicked(self):
         port = self.portComboBox.currentText()
+
+
         self.ser.connect(port)
-        self.readGenPushButtonClicked()
-        self.readDataPushButtonClicked()
+        addr = int(self.addrComboBox.currentText(), 16)
+
+        self.ser.stmSetAddr(addr)
+        self.ser.stmReset()
+       # self.readGenPushButtonClicked()
+       # self.readDataPushButtonClicked()
         self.openPortPushButton.setEnabled(False)
         self.closePortPushButton.setEnabled(True)
 
@@ -619,6 +629,8 @@ class MW(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def refrPortPushButtonClicked(self):
         prt = list(serial.tools.list_ports.comports())
+
+        self.portComboBox.clear()
 
         sch = 1
         self.writeLog('Описание доступных портов:')

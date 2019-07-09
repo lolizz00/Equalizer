@@ -10,7 +10,8 @@
 int sh_exec_init(SHELLINFO*);
 int sh_print_cmd_generic(SHELLINFO * sh_info, SHELLCMD *cmd);
 int sh_exec_cmd_help(SHELLINFO * sh_info, SHELLCMD *cmd);
-
+int sh_exec_cmd_addr(SHELLINFO * sh_info, SHELLCMD *cmd);
+int sh_exec_cmd_find(SHELLINFO * sh_info, SHELLCMD *cmd);
 
 int sh_exec_cmd_conn(SHELLINFO * sh_info, SHELLCMD *cmd);
 int sh_exec_cmd_read(SHELLINFO * sh_info, SHELLCMD *cmd);

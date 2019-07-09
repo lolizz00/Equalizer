@@ -967,8 +967,8 @@ input termination is 50 Ω</string>
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>491</width>
-             <height>301</height>
+             <width>100</width>
+             <height>30</height>
             </rect>
            </property>
            <attribute name="label">
@@ -1920,8 +1920,8 @@ input termination is 50 Ω</string>
         <widget class="QWidget" name="layoutWidget">
          <property name="geometry">
           <rect>
-           <x>50</x>
-           <y>120</y>
+           <x>90</x>
+           <y>100</y>
            <width>122</width>
            <height>54</height>
           </rect>
@@ -1942,6 +1942,39 @@ input termination is 50 Ω</string>
            </widget>
           </item>
          </layout>
+        </widget>
+        <widget class="QComboBox" name="addrComboBox">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>140</y>
+           <width>69</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <item>
+          <property name="text">
+           <string>0xB1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>0xB8</string>
+          </property>
+         </item>
+        </widget>
+        <widget class="QPushButton" name="findPushButton">
+         <property name="geometry">
+          <rect>
+           <x>84</x>
+           <y>170</y>
+           <width>101</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Поиск адресов</string>
+         </property>
         </widget>
        </widget>
        <widget class="QGroupBox" name="groupBox_3">

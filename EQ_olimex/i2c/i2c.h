@@ -6,6 +6,7 @@
 #include "stm32f10x_rcc.h"
 
 #include "utils.h"
+#include "shell.h"
 
 // --- user
 
@@ -17,13 +18,12 @@
 #define MAIN_I2C_SDA_Pin  GPIO_Pin_11
 
 
-#define EQ_ADDR 0xB0
-
+extern unsigned EQ_ADDR;  
 // --- 
 
 void initMainI2C();
 
-void I2C_search(I2C_TypeDef* I2Cx);
+void I2C_search(I2C_TypeDef* I2Cx, SHELLINFO * sh_info);
 BOOL I2C_checkAddr(I2C_TypeDef* I2Cx, uint8_t addr);
 BOOL I2C_init(I2C_TypeDef* I2Cx);
 void I2C_clockReset(I2C_TypeDef* I2Cx);

@@ -42,7 +42,6 @@ class serStm(PyQt5.QtCore.QObject):
 
     def _read(self):
 
-
         vals = self.ser.read_all()
         vals = vals.decode("utf-8")
         vals = vals.replace('\r', '')
@@ -72,6 +71,25 @@ class serStm(PyQt5.QtCore.QObject):
 
         resp = self._ask('reset')
         self.log('STM : ' + resp)
+
+    def find(self):
+        self._write('find')
+
+
+        while True:
+            text = self._read()
+
+
+            if text != '':
+                self.log(text)
+
+            if text.find('End') != -1:
+                break
+
+
+    def stmSetAddr(self, addr):
+        addr = hex(addr).replace('0x', '')
+        self._write('addr ' +  addr)
 
     def stmReadReg(self, reg):
 

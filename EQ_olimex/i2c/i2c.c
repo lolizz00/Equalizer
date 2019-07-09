@@ -2,6 +2,9 @@
 
 uint32_t Timeout = 0; 
 
+
+unsigned EQ_ADDR;
+
 void initMainI2C()
 {
   GPIO_InitTypeDef GPIO_InitStruct;
@@ -89,12 +92,12 @@ void I2C_clockReset(I2C_TypeDef* I2Cx)
   }
 }
 
-void I2C_search(I2C_TypeDef* I2Cx)
+void I2C_search(I2C_TypeDef* I2Cx, SHELLINFO * sh_info)
 {
   char buff[100]= {0};
   int flg = 0;
   
-  printf_log("Begin scaning I2C...\n");
+  sh_info->sh_send_str("Begin scaning I2C...\n\r");
   
   for(int i =0; i < 0xFF;i++)
   {
@@ -107,8 +110,8 @@ void I2C_search(I2C_TypeDef* I2Cx)
     
      I2C_GenerateSTOP(I2Cx, ENABLE);
      
-     sprintf(buff, "I2C addr: 0x%X -YES\n", i);
-     printf_log(buff);  
+     sprintf(buff, "I2C addr: 0x%X -YES\n\r", i);
+     sh_info->sh_send_str(buff);  
      flg = TRUE;
      continue;
      
@@ -120,17 +123,19 @@ void I2C_search(I2C_TypeDef* I2Cx)
       }
       
        sprintf(buff, "I2C addr: 0x%X -NO\n", i);
-       //printf_log(buff);  
+       //sh_info->sh_send_strprintf_log(buff);  
      
      
   }
   
-  printf_log("End scaning I2C.\n");
-  
-  if(!flg)
+   if(!flg)
   {
-    printf_log("Nothing found!\n");
+    sh_info->sh_send_str("Nothing found!\n\r");
   }
+  
+   sh_info->sh_send_str("End scaning I2C.\n\r");
+  
+  
 }
 
 BOOL I2C_checkAddr(I2C_TypeDef* I2Cx, uint8_t addr)

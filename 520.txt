@@ -1,0 +1,27 @@
+520, плата компа, дальний слот
+
+
+EQA0 - EQB0 : GND
+ ---  13.0 19.7 24.4
+
+DEMA0 - DEMB1 : float
+--- VOD : 1.2
+--- DEM dB : –3.5
+--- INNER AMPLITUDE : 0.8
+
+RXDET : float
+---  Auto RX-Detect, outputs test every 12 ms until detection occurs; 
+termination is hi-Z until detection;
+once detected input termination is 50 Ω;
+Reset function by pulsing PRSNT high for 5 μs then;
+low again;
+
+LPBK : float
+--- Controls the loopback function: Normal Operation
+
+RATE : float
+--- AUTO Rate Select of Gen1/2 and Gen3 with de-emphasis
+
+
+SD_TH : float 
+--- ASSERT LEVEL 180 mVp-p / DEASSERT LEVEL 110 mVp-p
