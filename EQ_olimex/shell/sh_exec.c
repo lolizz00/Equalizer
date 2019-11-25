@@ -8,6 +8,8 @@
 #include "cd_class.h"
 #include "func.h"
 
+#include "utils.h"
+
 char *g_shell_argv[SH_MAX_ARG];
 char g_shell_cl_buf[SH_CL_SIZE];
 
@@ -81,12 +83,35 @@ const SHELLCMD g_shell_cmd_arr[] =
     sh_exec_cmd_find,
     sh_print_cmd_generic, 
     CMD_USER
+  },
+   {
+    "press",
+    "",
+    "",
+    sh_exec_cmd_press,
+    sh_print_cmd_generic, 
+    CMD_USER
   }
     
 };
 
 // ---
 
+
+int sh_exec_cmd_press(SHELLINFO * sh_info, SHELLCMD *cmd)
+{
+  
+  if(!strcmp("pwr", sh_info->argv[1]))
+  {
+    pressPWR(atoi(sh_info->argv[2]));
+  }
+  else if(!strcmp("rst", sh_info->argv[1]))
+  {
+    pressRST(atoi(sh_info->argv[2]));
+  }
+  
+  return 0;
+}
 
 int sh_exec_cmd_addr(SHELLINFO * sh_info, SHELLCMD *cmd)
 {

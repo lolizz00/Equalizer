@@ -49,9 +49,8 @@
   #include "stm32f10x_flash.h"
 #endif /*_FLASH */
 
-#ifdef _GPIO
-  #include "stm32f10x_gpio.h"
-#endif /*_GPIO */
+ #include "stm32f10x_gpio.h"
+
 
 #ifdef _I2C
   #include "stm32f10x_i2c.h"
@@ -69,9 +68,9 @@
   #include "stm32f10x_pwr.h"
 #endif /*_PWR */
 
-#ifdef _RCC
+
   #include "stm32f10x_rcc.h"
-#endif /*_RCC */
+
 
 #ifdef _RTC
   #include "stm32f10x_rtc.h"

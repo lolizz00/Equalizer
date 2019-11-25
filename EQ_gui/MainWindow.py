@@ -1,5 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from mw import Ui_MainWindow
+from PyQt5 import QtTest
+
 
 from PyQt5.QtCore import *
 from PyQt5.QtCore import QTimer
@@ -11,6 +13,7 @@ import re
 import serial.tools.list_ports
 
 from serStm import serStm
+from PyQt5 import QtTest
 
 class MW(QtWidgets.QMainWindow, Ui_MainWindow):
 
@@ -59,6 +62,74 @@ class MW(QtWidgets.QMainWindow, Ui_MainWindow):
         self.saveFilePushButton.clicked.connect(self.saveFilePushButtonClicked)
         self.readDataComboBox.currentIndexChanged.connect(self.readDataPushButtonClicked)
         self.findPushButton.clicked.connect(self.findPushButtonClicked)
+        self.CH07_setPushButton.clicked.connect(self.CH07_setPushButtonClicked)
+
+
+    def CH07_setPushButtonClicked(self):
+
+        vod_n = 0
+        dem_n = 0
+        eq_n = 0
+
+        self.readDataPushButtonClicked()
+        QtTest.QTest.qWait(100)
+
+
+        self.EQcheckBox.setChecked(True)
+        self.VODcheckBox.setChecked(True)
+        self.DEMcheckBox.setChecked(True)
+
+        # 0-3
+
+        self.CH0checkBox.setChecked(True)
+        self.CH1checkBox.setChecked(True)
+        self.CH2checkBox.setChecked(True)
+        self.CH3checkBox.setChecked(True)
+
+        self.CH4checkBox.setChecked(False)
+        self.CH5checkBox.setChecked(False)
+        self.CH6checkBox.setChecked(False)
+        self.CH7checkBox.setChecked(False)
+
+        vod_n = int(self.CH03_VODcomboBox.currentText())
+        dem_n = int(self.CH03_DEMcomboBox.currentText())
+        eq_n =  int(self.CH03_EQcomboBox.currentText())
+
+        self.VODCcomboBox.setCurrentIndex(vod_n)
+        self.DEMcomboBox.setCurrentIndex(dem_n)
+        self.EQControlcomboBox.setCurrentIndex(eq_n)
+
+        QtTest.QTest.qWait(100)
+
+
+        self.writeDataPushButtonClicked()
+
+        # 4 - 7
+
+        self.CH0checkBox.setChecked(False)
+        self.CH1checkBox.setChecked(False)
+        self.CH2checkBox.setChecked(False)
+        self.CH3checkBox.setChecked(False)
+
+        self.CH4checkBox.setChecked(True)
+        self.CH5checkBox.setChecked(True)
+        self.CH6checkBox.setChecked(True)
+        self.CH7checkBox.setChecked(True)
+
+        vod_n = int(self.CH47_VODcomboBox.currentText())
+        dem_n = int(self.CH47_DEMcomboBox.currentText())
+        eq_n = int(self.CH47_EQcomboBox.currentText())
+
+        self.VODCcomboBox.setCurrentIndex(vod_n)
+        self.DEMcomboBox.setCurrentIndex(dem_n)
+        self.EQControlcomboBox.setCurrentIndex(eq_n)
+
+        QtTest.QTest.qWait(100)
+
+        self.writeDataPushButtonClicked()
+
+
+
 
     def writeLog(self, msg):
         old_text = self.logTextEdit.toPlainText()
@@ -285,8 +356,9 @@ class MW(QtWidgets.QMainWindow, Ui_MainWindow):
         val = 1 << 6
         self.ser.stmWriteReg(0x07, val)
 
-    def readDataPushButtonClicked(self):
+        self.enableSMBUS()
 
+    def readDataPushButtonClicked(self):
         reg = []
 
         n = int(self.readDataComboBox.currentText().replace('CH', ''))
@@ -492,7 +564,7 @@ class MW(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def VODtoBytes(self):
 
-        res = 0
+        res = 0x28
 
         if self.SCPcomboBox.currentIndex() == 0:
             res |= (1 << 7)
@@ -560,6 +632,8 @@ class MW(QtWidgets.QMainWindow, Ui_MainWindow):
                 }
 
 
+        writeTarg = [self.RXDETcheckBox.isChecked(), self.EQcheckBox.isChecked(), self.VODcheckBox.isChecked(), self.DEMcheckBox.isChecked(), self.IDLEcheckBox.isChecked()]
+
         targ = []
         if self.CH0checkBox.isChecked():
             targ.append(0)
@@ -583,7 +657,8 @@ class MW(QtWidgets.QMainWindow, Ui_MainWindow):
             addr = table[t]
 
             for i in range((len(data))):
-                self.ser.stmWriteReg(addr + i, data[i])
+                if writeTarg[i]:
+                    self.ser.stmWriteReg(addr + i, data[i])
 
         self.writeLog('Finish!')
 
@@ -610,6 +685,12 @@ class MW(QtWidgets.QMainWindow, Ui_MainWindow):
         self.openPortPushButton.setEnabled(True)
         self.closePortPushButton.setEnabled(False)
 
+    def enableSMBUS(self):
+        slaveCon = self.ser.stmReadReg(0x6)
+        slaveCon = int(slaveCon, 16)
+        slaveCon = slaveCon | (1 << 3)
+        self.ser.stmWriteReg(0x6, slaveCon)
+
     def openPortPushButtonClicked(self):
         port = self.portComboBox.currentText()
 
@@ -619,6 +700,11 @@ class MW(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.ser.stmSetAddr(addr)
         self.ser.stmReset()
+
+
+        self.enableSMBUS()
+
+
        # self.readGenPushButtonClicked()
        # self.readDataPushButtonClicked()
         self.openPortPushButton.setEnabled(False)

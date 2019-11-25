@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b214e888-d030-4980-a870-e99e4ae2078c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../520.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../520.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MainWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainWindow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/equalizerConfig.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/equalizerConfig.conf" beforeDir="false" afterPath="$PROJECT_DIR$/equalizerConfig.conf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mw.py" beforeDir="false" afterPath="$PROJECT_DIR$/mw.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mw.ui" beforeDir="false" afterPath="$PROJECT_DIR$/mw.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/serStm.py" beforeDir="false" afterPath="$PROJECT_DIR$/serStm.py" afterDir="false" />
@@ -24,6 +25,10 @@
       <change beforePath="$PROJECT_DIR$/../EQ_olimex/Debug/Obj/shell.pbi" beforeDir="false" afterPath="$PROJECT_DIR$/../EQ_olimex/Debug/Obj/shell.pbi" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../EQ_olimex/Debug/Obj/stm32f10x_it.o" beforeDir="false" afterPath="$PROJECT_DIR$/../EQ_olimex/Debug/Obj/stm32f10x_it.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../EQ_olimex/Debug/Obj/stm32f10x_it.pbi" beforeDir="false" afterPath="$PROJECT_DIR$/../EQ_olimex/Debug/Obj/stm32f10x_it.pbi" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EQ_olimex/Debug/Obj/stm32f10x_lib.o" beforeDir="false" afterPath="$PROJECT_DIR$/../EQ_olimex/Debug/Obj/stm32f10x_lib.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EQ_olimex/Debug/Obj/stm32f10x_lib.pbi" beforeDir="false" afterPath="$PROJECT_DIR$/../EQ_olimex/Debug/Obj/stm32f10x_lib.pbi" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EQ_olimex/Debug/Obj/stm32f10x_vector.o" beforeDir="false" afterPath="$PROJECT_DIR$/../EQ_olimex/Debug/Obj/stm32f10x_vector.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EQ_olimex/Debug/Obj/stm32f10x_vector.pbi" beforeDir="false" afterPath="$PROJECT_DIR$/../EQ_olimex/Debug/Obj/stm32f10x_vector.pbi" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../EQ_olimex/Debug/Obj/usb_buffer.o" beforeDir="false" afterPath="$PROJECT_DIR$/../EQ_olimex/Debug/Obj/usb_buffer.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../EQ_olimex/Debug/Obj/usb_buffer.pbi" beforeDir="false" afterPath="$PROJECT_DIR$/../EQ_olimex/Debug/Obj/usb_buffer.pbi" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../EQ_olimex/Debug/Obj/usb_desc.o" beforeDir="false" afterPath="$PROJECT_DIR$/../EQ_olimex/Debug/Obj/usb_desc.o" afterDir="false" />
@@ -42,9 +47,11 @@
       <change beforePath="$PROJECT_DIR$/../EQ_olimex/Debug/Obj/utils.pbi" beforeDir="false" afterPath="$PROJECT_DIR$/../EQ_olimex/Debug/Obj/utils.pbi" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../EQ_olimex/Debug/Obj/write.o" beforeDir="false" afterPath="$PROJECT_DIR$/../EQ_olimex/Debug/Obj/write.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../EQ_olimex/Debug/Obj/write.pbi" beforeDir="false" afterPath="$PROJECT_DIR$/../EQ_olimex/Debug/Obj/write.pbi" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EQ_olimex/i2c/i2c.c" beforeDir="false" afterPath="$PROJECT_DIR$/../EQ_olimex/i2c/i2c.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EQ_olimex/i2c/i2c.h" beforeDir="false" afterPath="$PROJECT_DIR$/../EQ_olimex/i2c/i2c.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EQ_olimex/app/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/../EQ_olimex/app/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EQ_olimex/func.c" beforeDir="false" afterPath="$PROJECT_DIR$/../EQ_olimex/func.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../EQ_olimex/i2c/utils.c" beforeDir="false" afterPath="$PROJECT_DIR$/../EQ_olimex/i2c/utils.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EQ_olimex/i2c/utils.h" beforeDir="false" afterPath="$PROJECT_DIR$/../EQ_olimex/i2c/utils.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EQ_olimex/library/inc/stm32f10x_lib.h" beforeDir="false" afterPath="$PROJECT_DIR$/../EQ_olimex/library/inc/stm32f10x_lib.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../EQ_olimex/settings/EQ.wsdt" beforeDir="false" afterPath="$PROJECT_DIR$/../EQ_olimex/settings/EQ.wsdt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../EQ_olimex/settings/EQ.wspos" beforeDir="false" afterPath="$PROJECT_DIR$/../EQ_olimex/settings/EQ.wspos" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../EQ_olimex/settings/usb_terminal.dbgdt" beforeDir="false" afterPath="$PROJECT_DIR$/../EQ_olimex/settings/usb_terminal.dbgdt" afterDir="false" />
@@ -64,54 +71,32 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/serStm.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="377">
-              <caret line="83" column="16" selection-start-line="83" selection-start-column="16" selection-end-line="83" selection-end-column="16" />
+            <state relative-caret-position="-182">
+              <caret line="93" column="6" selection-start-line="93" selection-start-column="6" selection-end-line="93" selection-end-column="6" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/MainWindow.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="244">
-              <caret line="57" column="41" lean-forward="true" selection-start-line="57" selection-start-column="41" selection-end-line="57" selection-end-column="41" />
-              <folding>
-                <element signature="e#0#42#0" expanded="true" />
-                <element signature="e#2557#2808#0" />
-                <element signature="e#2871#3506#0" />
-                <element signature="e#3558#4414#0" />
-                <element signature="e#4471#4536#0" />
-                <element signature="e#4593#4656#0" />
-                <element signature="e#4717#7459#0" />
-                <element signature="e#7511#8769#0" />
-                <element signature="e#8820#8872#0" />
-                <element signature="e#8924#13491#0" />
-                <element signature="e#13542#13777#0" />
-                <element signature="e#13820#14390#0" />
-                <element signature="e#14425#15583#0" />
-                <element signature="e#15620#16172#0" />
-                <element signature="e#16208#16609#0" />
-                <element signature="e#16649#17087#0" />
-                <element signature="e#17140#18517#0" />
-                <element signature="e#18567#18808#0" />
-                <element signature="e#18858#18876#0" />
-                <element signature="e#18927#18946#0" />
-                <element signature="e#18998#19119#0" />
-                <element signature="e#19170#19540#0" />
-                <element signature="e#19471#19499#0" />
-                <element signature="e#19550#19857#0" />
+                <element signature="e#1531#1726#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MainWindow.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2295">
+              <caret line="135" selection-start-line="135" selection-end-line="135" />
+              <folding>
+                <element signature="e#0#42#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/start.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="129">
+            <state relative-caret-position="136">
               <caret line="8" selection-start-line="8" selection-end-line="8" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
@@ -123,7 +108,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://C:/Python37/Lib/traceback.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="439">
+            <state relative-caret-position="1156">
               <caret line="71" selection-start-line="71" selection-end-line="71" />
             </state>
           </provider>
@@ -147,9 +132,7 @@
       <find>writeDa</find>
       <find>save</find>
       <find>log</find>
-      <find>write</find>
       <find>writeLo</find>
-      <find>read</find>
       <find>readDa</find>
       <find>__i</find>
       <find>self.openPort</find>
@@ -160,6 +143,16 @@
       <find>open</find>
       <find>ser.c</find>
       <find>addr</find>
+      <find>connect</find>
+      <find>rea</find>
+      <find>write</find>
+      <find>res</find>
+      <find>clear</find>
+      <find>read</find>
+      <find>qWait</find>
+      <find>VOD</find>
+      <find>VODtoBytes</find>
+      <find>clicked</find>
     </findStrings>
     <replaceStrings>
       <replace>&lt;&lt;</replace>
@@ -177,14 +170,14 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/start.py" />
-        <option value="$PROJECT_DIR$/serStm.py" />
         <option value="$PROJECT_DIR$/MainWindow.py" />
+        <option value="$PROJECT_DIR$/serStm.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="22" />
-    <option name="y" value="95" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="59" />
+    <option name="y" value="-8" />
     <option name="width" value="1869" />
     <option name="height" value="1096" />
   </component>
@@ -193,10 +186,25 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="EQ_gui" type="b2602c69:ProjectViewProjectNode" />
+              <item name="EQ_gui" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -253,14 +261,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="59" y="-8" width="1869" height="1096" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.251775" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2277444" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32917964" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3271028" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39875388" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -293,74 +300,41 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout-to-restore>
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/serStm.py</url>
-          <line>79</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/start.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Python37/Lib/traceback.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
+        <state relative-caret-position="1156">
           <caret line="71" selection-start-line="71" selection-end-line="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/serStm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="83" column="16" selection-start-line="83" selection-start-column="16" selection-end-line="83" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MainWindow.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="57" column="41" lean-forward="true" selection-start-line="57" selection-start-column="41" selection-end-line="57" selection-end-column="41" />
+        <state relative-caret-position="2295">
+          <caret line="135" selection-start-line="135" selection-end-line="135" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
-            <element signature="e#2557#2808#0" />
-            <element signature="e#2871#3506#0" />
-            <element signature="e#3558#4414#0" />
-            <element signature="e#4471#4536#0" />
-            <element signature="e#4593#4656#0" />
-            <element signature="e#4717#7459#0" />
-            <element signature="e#7511#8769#0" />
-            <element signature="e#8820#8872#0" />
-            <element signature="e#8924#13491#0" />
-            <element signature="e#13542#13777#0" />
-            <element signature="e#13820#14390#0" />
-            <element signature="e#14425#15583#0" />
-            <element signature="e#15620#16172#0" />
-            <element signature="e#16208#16609#0" />
-            <element signature="e#16649#17087#0" />
-            <element signature="e#17140#18517#0" />
-            <element signature="e#18567#18808#0" />
-            <element signature="e#18858#18876#0" />
-            <element signature="e#18927#18946#0" />
-            <element signature="e#18998#19119#0" />
-            <element signature="e#19170#19540#0" />
-            <element signature="e#19471#19499#0" />
-            <element signature="e#19550#19857#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/serStm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-182">
+          <caret line="93" column="6" selection-start-line="93" selection-start-column="6" selection-end-line="93" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#1531#1726#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/start.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
           </folding>
         </state>
       </provider>

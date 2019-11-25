@@ -18,4 +18,8 @@ int sh_exec_cmd_read(SHELLINFO * sh_info, SHELLCMD *cmd);
 int sh_exec_cmd_write(SHELLINFO * sh_info, SHELLCMD *cmd);
 int sh_exec_cmd_reset(SHELLINFO * sh_info, SHELLCMD *cmd);
 
+
+int sh_exec_cmd_press(SHELLINFO * sh_info, SHELLCMD *cmd);
+
+
 #endif

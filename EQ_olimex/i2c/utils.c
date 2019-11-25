@@ -1,5 +1,61 @@
 #include "includes.h"
 
+
+void initGPIO()
+{
+  RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE); 
+  GPIO_InitTypeDef tmp;
+  tmp.GPIO_Mode =  GPIO_Mode_IN_FLOATING;
+  tmp.GPIO_Speed =  GPIO_Speed_50MHz;
+  tmp.GPIO_Pin = GPIO_Pin_8 |  GPIO_Pin_9;
+
+  GPIO_Init(GPIOB, &tmp);
+}
+
+
+void pressPWR(uint32_t del)
+{
+
+  GPIO_InitTypeDef tmp;
+  tmp.GPIO_Mode =  GPIO_Mode_Out_PP;
+  tmp.GPIO_Speed =  GPIO_Speed_50MHz;
+  tmp.GPIO_Pin = GPIO_Pin_8;
+  GPIO_Init(GPIOB, &tmp);
+
+  GPIO_WriteBit(GPIOB, GPIO_Pin_8, Bit_RESET);
+  
+  
+  delay_ms(del);
+  
+  
+  tmp.GPIO_Mode =  GPIO_Mode_IN_FLOATING;
+  tmp.GPIO_Speed =  GPIO_Speed_50MHz;
+  tmp.GPIO_Pin = GPIO_Pin_8;
+  GPIO_Init(GPIOB, &tmp);
+}
+
+
+void pressRST(uint32_t del)
+{
+
+  GPIO_InitTypeDef tmp;
+  tmp.GPIO_Mode =  GPIO_Mode_Out_PP;
+  tmp.GPIO_Speed =  GPIO_Speed_50MHz;
+  tmp.GPIO_Pin = GPIO_Pin_9;
+  GPIO_Init(GPIOB, &tmp);
+
+  GPIO_WriteBit(GPIOB, GPIO_Pin_9, Bit_RESET);
+  
+  
+  delay_ms(del);
+  
+  
+  tmp.GPIO_Mode =  GPIO_Mode_IN_FLOATING;
+  tmp.GPIO_Speed =  GPIO_Speed_50MHz;
+  tmp.GPIO_Pin = GPIO_Pin_9;
+  GPIO_Init(GPIOB, &tmp);
+}
+
 char *strcat_s(char * s1, int numberOfElements, const char * s2)
 {
   if (strlen(s1) + strlen(s2) < numberOfElements)
@@ -50,7 +106,7 @@ uint8_t askEQ(uint8_t reg, int* stat)
   uint8_t wr_buff[1] = { reg };
   uint8_t rd_buff[1] = { 0 };
   
-   char buff[50] = {0};
+  char buff[50] = {0};
   
   if(I2C_ask(MAIN_I2C, EQ_ADDR, 1, wr_buff, 1, rd_buff))
   {

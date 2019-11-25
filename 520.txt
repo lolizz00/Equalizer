@@ -2,7 +2,7 @@
 
 
 EQA0 - EQB0 : GND
- ---  13.0 19.7 24.4
+ ---  dB at 1.25 GHz : 2.1 3.7 4.9
 
 DEMA0 - DEMB1 : float
 --- VOD : 1.2

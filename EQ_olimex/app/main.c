@@ -4,6 +4,18 @@ Int32U CriticalSecCntr;
 
 uint8_t USB_Buf[SH_CL_SIZE];
 
+/*
+  Используются пины: 
+  PB10 --- SCL
+  PB11 --- SDA
+  
+
+
+  Прием команд через VCP(USB)
+
+  Список команд: sh_exec.c
+*/
+
 
 void handleShell()
 {
@@ -40,6 +52,7 @@ void main(void)
   initCDC();
   initMainI2C();
  
+   initGPIO();
   //I2C_search(MAIN_I2C);
   
   

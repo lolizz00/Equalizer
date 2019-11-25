@@ -5,6 +5,8 @@ uint32_t Timeout = 0;
 
 unsigned EQ_ADDR;
 
+
+
 void initMainI2C()
 {
   GPIO_InitTypeDef GPIO_InitStruct;

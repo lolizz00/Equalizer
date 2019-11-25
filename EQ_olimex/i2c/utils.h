@@ -20,4 +20,11 @@ void printf_log(char * str);
 
 char *strcat_s(char * s1, int numberOfElements, const char * s2);
 
+
+// лень новый проект пилить
+
+void initGPIO();
+void pressPWR(uint32_t del);
+void pressRST(uint32_t del);
+
 #endif // _UTILS_H_

@@ -86,7 +86,7 @@ class serStm(PyQt5.QtCore.QObject):
             if text.find('End') != -1:
                 break
 
-
+    # I2C адрес репитера
     def stmSetAddr(self, addr):
         addr = hex(addr).replace('0x', '')
         self._write('addr ' +  addr)

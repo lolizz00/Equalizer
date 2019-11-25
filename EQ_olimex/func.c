@@ -12,6 +12,7 @@ RINGBUFF_T rxBuf;
 
 SHELLINFO g_shell;
 
+
 void initCDC()
 {
 
